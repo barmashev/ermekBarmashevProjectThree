@@ -1,0 +1,45 @@
+main {
+    background-color: #35654d;
+}
+
+.wrapper {
+    max-width: 1400px;
+    width: 90%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dealer,
+.player {
+    display: flex;
+}
+
+.card {
+    height: 300px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: white;
+    margin: 20px;
+
+    .rank {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .suit {
+        font-size: 80px;
+    }
+}
+

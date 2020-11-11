@@ -1,0 +1,21 @@
+//Make a data structure of all the possible cards combinations
+
+//Make a function that returns random card
+
+//Make a function that injects a random card to a player/dealer
+
+//Make a function that counts the cards
+
+//Make a function that displays who won
+
+//Make a function that decides what dealer does (if count > 17 -> enough else take on more)
+
+//Event listener to draw the card
+
+//Event listener to enough the card
+
+//Event listener to reset the game on the pop up
+
+//End of the game.Empties the arrays with the cards.Initiate the draw.
+
+
