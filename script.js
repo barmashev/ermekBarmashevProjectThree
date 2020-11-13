@@ -3,6 +3,7 @@ myApp.$player =$('.player');
 myApp.$dealer =$('.dealer');
 myApp.$modal = $('.modal');
 myApp.$resultsText = $('.resultsText');
+myApp.$readMoreArrow = $('.arrow i');
 
 
 myApp.hand = {
@@ -20,11 +21,11 @@ myApp.cards = {
     ranks:[2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 }
 
-myApp.startGame = function(){
-    $('.startGame').on('click', myApp.init);
+myApp.init = function(){
+    $('.rules').hide();
 }  
 
-myApp.init = function(){
+myApp.startGame = function(){
     myApp.$player.empty();
     myApp.$dealer.empty();
 
@@ -34,15 +35,13 @@ myApp.init = function(){
     myApp.results.player = '';
     myApp.results.dealer = '';
     $('.modal').slideUp('slow');
-    myApp.clickHit();
-    myApp.clickStand();
 
-    
+    for(let i = 0;i < 2;i++){
+        myApp.dealCards(myApp.$dealer);
         myApp.dealCards(myApp.$player);
-        // myApp.dealCards(myApp.$dealer);
-        // myApp.dealCards(myApp.$player);
-        // myApp.dealCards(myApp.$dealer);
-    
+    }  
+    console.log(myApp.$secondDealerCard);
+    $('.dealer div:nth-child(2)').attr('class', 'hidden card');
 }
 
 myApp.dealCards = function(side){
@@ -51,6 +50,7 @@ myApp.dealCards = function(side){
 
     const cardHtml =`<div class="card">
                         <span class="rank">${rank}</span>
+                        <span class="topSuit"> ${suit}</span>
                         <span class="suit"> ${suit}</span>
                     </div>`;
     side.append(cardHtml);
@@ -60,8 +60,10 @@ myApp.dealCards = function(side){
     myApp.results.player = myApp.countHand(myApp.hand.player);
     myApp.results.dealer = myApp.countHand(myApp.hand.dealer);
 
+    $('.playerScoreIndicator').text(myApp.results.player);
+
     if(myApp.over21(myApp.results.player)){
-        myApp.gameOver('lost');
+        myApp.gameOver('successfully lost. Bravo!');
     }
 }
 
@@ -82,7 +84,7 @@ myApp.setCardScore = function(side, rank ){
     else if (rank === 'A') {
         myApp.hand[side].push(11);
     } 
-    else if(rank === 'J'||'Q'||'K') {
+    else if(rank === 'J'||rank === 'Q'||rank === 'K') {
         myApp.hand[side].push(10);
     }
 } 
@@ -100,46 +102,59 @@ myApp.over21 = function(score){
     }
 }
 
-// myApp.standHandler = function(){
-//     const player = myApp.results.player;
-//     const dealer = myApp.results.dealer;
+myApp.standHandler = function(){
+    const player = myApp.results.player;
+    const dealer = myApp.results.dealer;
 
-//     myApp.over21('dealer', dealer);
+    $('.dealer div:nth-child(2)').attr('class', 'card');
+    $('.dealerScoreIndicator').text(myApp.results.dealer);
 
-//     if(dealer > player && dealer <= 21) {
-//         myApp.gameOver('lost');
-//     } 
-//     else if(dealer > 21){
-//         myApp.gameOver('won');
-//     }
-//     else {
-//         myApp.dealCards(myApp.$dealer);
-//         console.log('dealer drawing');
-//         myApp.standHandler();
-//     }
-// }
+
+
+    if(dealer > player && dealer <= 21) {
+        myApp.gameOver('successfully lost. Bravo!');
+    } 
+    else if(dealer > 21){
+        myApp.gameOver('unfortunately, won');
+    }
+    else if(dealer === player){
+        myApp.gameOver('luckily for you, tied.');
+    }
+    else {
+        myApp.dealCards(myApp.$dealer);
+        myApp.standHandler();
+    }
+}
 
 myApp.gameOver = function(verb){
-    myApp.$resultsText.text(`You have ${verb}`);
-    
+    myApp.$resultsText.text(`You have ${verb}`); 
     $('.modal').slideDown('slow');
-
-    myApp.startGame();
 }
 
 //Event listeners
-myApp.clickHit = function(){
-    $('.hit').on('click', function(){
+myApp.eventListeners = function(){
+    $('.hit').on('click', function(){   
     myApp.dealCards(myApp.$player);
-})
-}    
+    })
 
-myApp.clickStand = function(){
     $('.stand').on('click', myApp.standHandler);
-}    
+
+    $('.startGameButton').on('click', myApp.startGame);
+
+    $('.resultsButton').on('click', ()=> {
+        if(myApp.$readMoreArrow.attr('class') === 'fas fa-chevron-right'){
+            $('.rules').slideDown();
+            $('.arrow i').attr('class','fas fa-chevron-down');
+        } else if (myApp.$readMoreArrow.attr('class') === 'fas fa-chevron-down'){
+            $('.rules').slideUp();
+            $('.arrow i').attr('class','fas fa-chevron-right');
+        } 
+    })
+}
 
 $(function(){
-    myApp.startGame(); 
+    myApp.init(); 
+    myApp.eventListeners();
 })
 
 

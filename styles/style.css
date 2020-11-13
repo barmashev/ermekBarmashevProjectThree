@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -237,6 +239,7 @@ html {
 
 html {
   font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
 }
 
 main {
@@ -245,10 +248,7 @@ main {
 }
 
 .hands {
-  max-width: 1400px;
-  width: 90%;
   height: 80vh;
-  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -264,11 +264,40 @@ main {
           align-items: center;
 }
 
+.dealersArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .dealer,
 .player {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hidden {
+  background: url(../assets/cardBack.png);
+  background-color: white;
+  background-size: cover;
+}
+
+.hidden .rank, .hidden .suit, .hidden .topSuit {
+  display: none;
 }
 
 .card {
@@ -294,7 +323,15 @@ main {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 30px;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.card .topSuit {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 4rem;
   font-weight: bold;
 }
 
@@ -322,8 +359,7 @@ main {
 }
 
 .modalContent {
-  height: 20vh;
-  width: 500px;
+  font-size: 2.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -338,9 +374,19 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   border: 5px solid #680001;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #f4f6dc;
   border-radius: 10px;
   z-index: 2;
+  width: 35%;
+  padding: 10px 20px;
+}
+
+h1 {
+  font-family: 'Abril Fatface', cursive;
+}
+
+.resultsButton {
+  cursor: pointer;
 }
 
 .controls {
@@ -352,7 +398,7 @@ main {
           justify-content: center;
   background-image: url(../assets/wood.jpg);
   width: 100%;
-  height: 250px;
+  height: 20vh;
 }
 
 button {
@@ -364,8 +410,23 @@ button {
   padding: 10px 20px;
   border: 3px solid  #35654d;
   border-radius: 8px;
+  background-color: #f4f6dc;
 }
 
 button i {
   margin-right: 10px;
+}
+
+.controls p,
+.dealersArea p {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 3rem;
+  margin: 30px;
+  padding: 10px 20px;
+  border: 3px solid  #35654d;
+  border-radius: 8px;
+  background-color: #f4f6dc;
+  display: inline-block;
 }
