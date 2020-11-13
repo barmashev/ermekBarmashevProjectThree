@@ -1,8 +1,11 @@
 const myApp = {};
-$player =$('.player');
-$dealer =$('.dealer');
+myApp.$player =$('.player');
+myApp.$dealer =$('.dealer');
+myApp.$modal = $('.modal');
+myApp.$resultsText = $('.resultsText');
 
-myApp.score = {
+
+myApp.hand = {
     player:[0],
     dealer:[0],
 }
@@ -17,16 +20,6 @@ myApp.cards = {
     ranks:[2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 }
 
-myApp.getRandomNumber = function(number){
-    return Math.floor(Math.random() * number);
-}
-
-myApp.getRandomSign = function(sign) {
-    const randomIndex = myApp.getRandomNumber(myApp.cards[sign].length)
-    const randomSign = myApp.cards[sign][randomIndex];
-    return randomSign;
-}
-
 myApp.dealCards = function(side){
     let rank = myApp.getRandomSign('ranks');
     let suit = myApp.getRandomSign('suits');
@@ -39,21 +32,33 @@ myApp.dealCards = function(side){
 
     myApp.setCardScore(side.attr('class'), rank);
 
-    myApp.results.player = myApp.countHand(myApp.score.player);
-    myApp.results.dealer = myApp.countHand(myApp.score.dealer);
+    myApp.results.player = myApp.countHand(myApp.hand.player);
+    myApp.results.dealer = myApp.countHand(myApp.hand.dealer);
 
-    myApp.scoreCheck(myApp.results.player);
+    if(myApp.over21(myApp.results.player)){
+        myApp.gameOver('lost');
+    }
+}
+
+myApp.getRandomNumber = function(number){
+    return Math.floor(Math.random() * number);
+}
+
+myApp.getRandomSign = function(sign) {
+    const randomIndex = myApp.getRandomNumber(myApp.cards[sign].length)
+    const randomSign = myApp.cards[sign][randomIndex];
+    return randomSign;
 }
 
 myApp.setCardScore = function(side, rank ){
     if(!isNaN(rank)){
-        myApp.score[side].push(rank);
+        myApp.hand[side].push(rank);
     } 
     else if (rank === 'A') {
-        myApp.score[side].push(11);
+        myApp.hand[side].push(11);
     } 
     else if(rank === 'J'||'Q'||'K') {
-        myApp.score[side].push(10);
+        myApp.hand[side].push(10);
     }
 } 
 
@@ -64,41 +69,84 @@ myApp.countHand = function(hand){
     return sum;
 }
 
-myApp.scoreCheck = function(score){
+myApp.over21 = function(score){
     if(score > 21) {
-        console.log('you lost');
+        return true;
     }
 }
 
 myApp.standHandler = function(){
-    if(myApp.results.dealer > myApp.results.player) {
-        console.log('you lost')
-    } else {
-        myApp.dealCards($dealer);
-        s
+    const player = myApp.results.player;
+    const dealer = myApp.results.dealer;
+
+    myApp.over21('dealer', dealer);
+
+    if(dealer > player && dealer <= 21) {
+        myApp.gameOver('lost');
+    } 
+    else if(dealer > 21){
+        myApp.gameOver('won');
+    }
+    else {
+        myApp.dealCards(myApp.$dealer);
+        console.log('dealer drawing');
+        myApp.standHandler();
     }
 }
 
-myApp.calculateResults = function(){
+myApp.init = function(){
+    myApp.$player.empty();
+    myApp.$dealer.empty();
+
+    myApp.hand.player = [0];
+    myApp.hand.dealer = [0];
     
+    myApp.results.player = '';
+    myApp.results.dealer = '';
+    $('.modal').slideUp('slow');
+    myApp.clickHit();
+    myApp.clickStand();
+
+    for(let i = 0; i < 2; i++) {
+        myApp.dealCards(myApp.$player);
+        myApp.dealCards(myApp.$dealer);
+    }
 }
 
+myApp.startGame = function(){
+    $('.startGame').on('click', myApp.init);
+}  
 
+myApp.gameOver = function(verb){
+    setTimeout(() => {
+        myApp.$resultsText.text(`You have ${verb}`);
+        
 
+        $('.modal').slideDown('slow');
+
+        myApp.startGame();
+
+    }, 1000);
+}
 
 
 //Event listeners
-$('.hit').on('click', function(){
-    myApp.dealCards($player);
+
+
+myApp.clickHit = function(){
+    $('.hit').on('click', function(){
+    myApp.dealCards(myApp.$player);
 })
+}    
 
-$('.stand').on('click', myApp.standHandler)
+myApp.clickStand = function(){
+    $('.stand').on('click', myApp.standHandler);
+}    
 
 
-for(let i = 0; i < 2; i++) {
-    myApp.dealCards($player);
-    myApp.dealCards($dealer);
-}
+$(function(){
+    myApp.startGame(); 
+})
 
 
 

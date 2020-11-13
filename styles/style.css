@@ -236,7 +236,7 @@ html {
 }
 
 main {
-  background-color: #35654d;
+  background: url(../assets/fabric.jpg);
 }
 
 .wrapper {
@@ -295,4 +295,45 @@ main {
 
 .card .suit {
   font-size: 80px;
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modalContent {
+  height: 300px;
+  width: 500px;
+  background-color: #A83F39;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.closed {
+  display: none;
 }
