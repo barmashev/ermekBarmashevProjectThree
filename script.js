@@ -120,7 +120,7 @@ myApp.standHandler = function(){
     else if(dealer === player){
         myApp.gameOver('luckily for you, tied.');
     }
-    else {
+    else if(dealer < player) {
         myApp.dealCards(myApp.$dealer);
         myApp.standHandler();
     }
