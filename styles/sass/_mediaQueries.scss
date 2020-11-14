@@ -1,6 +1,5 @@
 @media(max-width:735px){
-        .controls p,
-    .dealersArea p,
+    .info,  
     button {
         font-size: 1.6rem;
     }
@@ -13,19 +12,29 @@
         height: 150px;
         width: 100px;
         margin-left: -75px;
+
+        .suit {
+            font-size: 5rem;
+        }
     }
 
     .card:first-child{
         margin-left: 10px;
     }
 
-    .controls {
-        justify-content: space-evenly;
+    .playerPanel {
+        .controls {
+            justify-content: space-evenly;
+        }
     }
 }
 
 @media(max-width:480px){
     .modalContent {
         padding: 0;
+    }
+
+    .info {
+        margin: 5px;
     }
 }
