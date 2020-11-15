@@ -239,12 +239,37 @@ html {
 
 html {
   font-size: 62.5%;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
+  margin: 0;
+  padding: 0;
 }
 
 main {
   background: url(./assets/fabric.jpg);
   width: 100%;
+}
+
+.score {
+  background-color: black;
+  color: white;
+  border-radius: 50px;
+  font-size: 2.5rem;
+}
+
+.info,
+.score {
+  margin: 5px;
+  padding: 25px 10px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .hands {
@@ -296,7 +321,9 @@ main {
   background-size: cover;
 }
 
-.hidden .rank, .hidden .suit, .hidden .topSuit {
+.hidden .rank,
+.hidden .suit,
+.hidden .topSuit {
   display: none;
 }
 
@@ -383,11 +410,18 @@ main {
   border-radius: 10px;
   z-index: 2;
   width: 735px;
-  padding: 10px 20px;
 }
 
-h1 {
-  font-family: 'Abril Fatface', cursive;
+.modalContent h1 {
+  font-family: "Abril Fatface", cursive;
+}
+
+.modalContent .error {
+  color: red;
+}
+
+.modalContent .resultsText {
+  font-weight: bold;
 }
 
 .readRules {
@@ -411,12 +445,15 @@ h1 {
 }
 
 .playerPanel .infoPanel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  width: 700px;
+  margin: 0 auto;
+  font-size: 2.5rem;
 }
 
 .playerPanel .controls {
@@ -435,7 +472,7 @@ button {
   font-size: 3rem;
   padding: 10px 20px;
   margin: 20px;
-  border: 3px solid  #35654d;
+  border: 3px solid #35654d;
   border-radius: 8px;
   background-color: #f4f6dc;
 }
@@ -447,18 +484,6 @@ button i {
 button:hover,
 button:focus {
   background-color: #d5d8b9;
-}
-
-.info {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  font-size: 3rem;
-  padding: 10px 20px;
-  border: 3px solid  #35654d;
-  background-color: #f4f6dc;
-  display: inline-block;
-  margin: 20px;
 }
 
 form {
@@ -477,15 +502,20 @@ form {
 form input {
   width: 100px;
   margin: 10px;
-  border: 3px solid  #35654d;
+  border: 3px solid #35654d;
   border-radius: 8px;
   padding: 3px;
 }
 
 @media (max-width: 735px) {
+  .score,
   .info,
   button {
     font-size: 1.6rem;
+  }
+  .score,
+  .info {
+    padding: 10px;
   }
   .modalContent {
     width: 100%;
@@ -506,13 +536,24 @@ form input {
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
   }
+  .playerPanel .infoPanel {
+    width: 100%;
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 480px) {
   .modalContent {
     padding: 0;
+    margin: 5px auto;
+    text-align: center;
   }
-  .info {
+  .info,
+  .score {
+    margin: 5px;
+    padding: 5px;
+  }
+  button {
     margin: 5px;
   }
 }

@@ -1,40 +1,59 @@
-@media(max-width:735px){
-    .info,  
-    button {
-        font-size: 1.6rem;
+@media (max-width: 735px) {
+  .score,
+  .info,
+  button {
+    font-size: 1.6rem;
+  }
+
+  .score,
+  .info {
+    padding: 10px;
+  }
+
+  .modalContent {
+    width: 100%;
+  }
+
+  .card {
+    height: 150px;
+    width: 100px;
+    margin-left: -75px;
+
+    .suit {
+      font-size: 5rem;
+    }
+  }
+
+  .card:first-child {
+    margin-left: 10px;
+  }
+
+  .playerPanel {
+    .controls {
+      justify-content: space-evenly;
     }
 
-    .modalContent {
-        width: 100%;
+    .infoPanel {
+      width: 100%;
+      font-size: 1.6rem;
     }
-
-    .card {
-        height: 150px;
-        width: 100px;
-        margin-left: -75px;
-
-        .suit {
-            font-size: 5rem;
-        }
-    }
-
-    .card:first-child{
-        margin-left: 10px;
-    }
-
-    .playerPanel {
-        .controls {
-            justify-content: space-evenly;
-        }
-    }
+  }
 }
 
-@media(max-width:480px){
-    .modalContent {
-        padding: 0;
-    }
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 0;
+    margin: 5px auto;
+    text-align: center;
+  }
 
-    .info {
-        margin: 5px;
-    }
+  .info,
+  .score {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  button {
+    margin: 5px;
+  }
 }

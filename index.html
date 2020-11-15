@@ -26,17 +26,17 @@
 
                 <form action="#">
                     <label for="betInput">What is your bet?</label>
-                    <input type="number" name="betInput" id="betInput">
-                    <button type = "submit">Bet</button>
+                    <input type="number" name="betInput" id="betInput" required>
+                    <p class="error"></p>
+                    <button type = "submit">Start the game</button>
                 </form>
-
-                <!-- <button class="startGameButton">Play!</button> -->
+                
             </div>
         </div>
         
         <class class="hands">
             <div class="dealersArea">
-                <p class="info">Dealer's score: <span class="dealerScoreIndicator"></span></p>
+                <p class="score">Dealer's score: <span class="dealerScoreIndicator"></span></p>
                 <div class="dealer"></div>
             </div>
     
@@ -45,8 +45,8 @@
         </div>
         <div class="playerPanel">
             <div class="infoPanel">
-                <p class="info">Current bet: <span class="currentBet">&nbsp;&nbsp;&nbsp;&nbsp;</span>$</p>
-                <p class="info">Score: <span class="playerScoreIndicator"></span></p>
+                <p class="info">Your bet: <span class="currentBet">&nbsp;&nbsp;&nbsp;&nbsp;</span>$</p>
+                <p class="score">Score: <span class="playerScoreIndicator">&nbsp;&nbsp;</span></p>
                 <p class="info">Bank: <span class="bank">&nbsp;&nbsp;&nbsp;&nbsp;</span>$</p>
             </div>
             <div class="controls">

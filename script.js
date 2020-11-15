@@ -29,10 +29,27 @@ myApp.cards = {
 myApp.init = function(){
     $('.rules').hide();
 } 
-
-//Set bet
-myApp.setBet = function(e){
+//Handle betting errors
+myApp.betErrorHandler = function(e){
     e.preventDefault();
+    const errorMessage = $('.error');
+    const betInputVal = parseInt($('#betInput').val());
+
+    if(betInputVal < 1){
+        errorMessage.text("Your bet has to be at least 1$, dummy");
+    } else if(myApp.playerBank < 1){
+        errorMessage.text("I'm going to have to ask you to leave. (Your bank is dry AF)");
+    }
+    else if(betInputVal > myApp.playerBank){
+        errorMessage.text("You're sure you got that much money, pal?");
+    }
+    else {
+        errorMessage.empty();
+        myApp.setBet();
+    }
+}
+//Set bet
+myApp.setBet = function(){
     myApp.playerBet = $('#betInput').val();
     myApp.$currentBetElement.text(myApp.playerBet);
     myApp.playerBank -= myApp.playerBet; 
@@ -51,6 +68,7 @@ myApp.startGame = function(){
     myApp.results.player = '';
     myApp.results.dealer = '';
     $('.modal').slideUp('slow');
+
     for(let i = 0;i < 2;i++){
         myApp.dealCards(myApp.$dealer);
         myApp.dealCards(myApp.$player);
@@ -128,7 +146,7 @@ myApp.standHandler = function(){
         myApp.gameOver('successfully lost. Bravo!');
     } 
     else if(dealer > 21){
-        myApp.gameOver('unfortunately, won');
+        myApp.gameOver('unfortunately, won.');
     }
     else if(dealer === player){
         myApp.gameOver('luckily for you, tied.');
@@ -145,16 +163,19 @@ myApp.gameOver = function(phrase){
     switch (phrase) {
         case 'successfully lost. Bravo!':
             break;
-        case 'unfortunately, won':
+        case 'unfortunately, won.':
             myApp.playerBank += myApp.playerBet * 1.5; 
             break;
-        case 'unfortunately, won':
+        case 'luckily for you, tied.':
             myApp.playerBank += myApp.playerBet; 
             break;        
     }
 
     myApp.$currentBetElement.empty();
     myApp.$bankElement.text(myApp.playerBank);
+    $('.rules').hide();
+    $('.arrow i').attr('class','fas fa-chevron-right');
+
     $('.modal').slideDown('slow');
 }
 
@@ -166,7 +187,7 @@ myApp.eventListeners = function(){
 
     $('.stand').on('click', myApp.standHandler);
 
-    $('form').on('submit', myApp.setBet)
+    $('form').on('submit', myApp.betErrorHandler);
 
     $('.readRules').on('click', ()=> {
         if(myApp.$readMoreArrow.attr('class') === 'fas fa-chevron-right'){
@@ -185,6 +206,8 @@ $(function(){
     myApp.eventListeners();
     myApp.$bankElement.text(myApp.playerBank);    
 })
+
+
 
 
 
