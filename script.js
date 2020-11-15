@@ -62,6 +62,10 @@ myApp.startGame = function(){
     myApp.$player.empty();
     myApp.$dealer.empty();
 
+    $('.dealerScoreIndicator').empty();
+    $('.playerScoreIndicator').empty();
+
+
     myApp.hand.player = [0];
     myApp.hand.dealer = [0];
     
@@ -206,7 +210,6 @@ $(function(){
     myApp.eventListeners();
     myApp.$bankElement.text(myApp.playerBank);  
     setTimeout(function(){
-		// Hide the address bar!
 		window.scrollTo(0, 1);
 	}, 0);  
 })
