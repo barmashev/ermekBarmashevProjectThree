@@ -9,31 +9,31 @@
     <script src="https://kit.fontawesome.com/651b66d866.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <main>
-        <div class="modal">
-            <div class="modalContent">
-                <h1>&spades; Black Jack &clubs;</h1>
-                <p class="resultsText">Welcome!</p>
-                <p class="readRules">Read the rules <span class="arrow"><i class="fas fa-chevron-right"></i></span></p>
-                <ul class="rules">
-                    <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
-                    <li>The values of the cards correspond to their numerical value from 2-10. Kings, Jacks, Queens are worth 10. Aces are worth 11.</li>
-                    <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
-                    <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
-                    <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
-                    <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
-                    <li>Dealer will hit until his/her cards total 17 or higher.</li>
-                </ul>
+    <div class="modal">
+        <div class="modalContent">
+            <h1>&spades; Black Jack &clubs;</h1>
+            <p class="resultsText">Welcome!</p>
+            <p class="readRules">Read the rules <span class="arrow"><i class="fas fa-chevron-right"></i></span></p>
+            <ul class="rules">
+                <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
+                <li>The values of the cards correspond to their numerical value from 2-10. Kings, Jacks, Queens are worth 10. Aces are worth 11.</li>
+                <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
+                <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
+                <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
+                <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
+                <li>Dealer will hit until his/her cards total 17 or higher.</li>
+            </ul>
 
-                <form action="#">
-                    <label for="betInput">What is your bet?</label>
-                    <input type="number" name="betInput" id="betInput" required>
-                    <p class="error"></p>
-                    <button type = "submit">Start the game</button>
-                </form>
-                
-            </div>
+            <form action="#">
+                <label for="betInput">What is your bet?</label>
+                <input type="number" name="betInput" id="betInput" required>
+                <p class="error"></p>
+                <button type = "submit">Start the game</button>
+            </form>
+            
         </div>
+    </div>
+    <main>
         
         <div class="hands">
             <div class="dealersArea">
