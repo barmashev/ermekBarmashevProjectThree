@@ -204,7 +204,11 @@ myApp.eventListeners = function(){
 $(function(){
     myApp.init(); 
     myApp.eventListeners();
-    myApp.$bankElement.text(myApp.playerBank);    
+    myApp.$bankElement.text(myApp.playerBank);  
+    setTimeout(function(){
+		// Hide the address bar!
+		window.scrollTo(0, 1);
+	}, 0);  
 })
 
 
