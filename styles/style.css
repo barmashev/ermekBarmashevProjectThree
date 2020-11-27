@@ -508,7 +508,7 @@ form input {
   padding: 3px;
 }
 
-@media (max-width: 735px) {
+@media (max-width: 735px), (max-height: 990px) {
   .score,
   .info,
   button {

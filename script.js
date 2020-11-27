@@ -54,7 +54,6 @@ myApp.setBet = function(){
     myApp.$currentBetElement.text(myApp.playerBet);
     myApp.playerBank -= myApp.playerBet; 
     myApp.$bankElement.text(myApp.playerBank);
-    console.log(myApp.playerBet, myApp.playerBank);
     myApp.startGame();
 }
 //Reset all the data and make an initial draw
